@@ -15,6 +15,8 @@ require_once(ROOT . '/components/Autoload.php');
 //3 УСТАНОВКА СОЕДИНЕНИЯ С БД
 
 
+session_start();
+
 //4 ВЫЗОВ РОУТА
 $router = new Router();
 $router->run();

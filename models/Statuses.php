@@ -1,7 +1,7 @@
 <?php
 
 
-class status
+class Statuses
 {
     public static function getStatusList()
     {
@@ -9,7 +9,7 @@ class status
         $newsList = array();
 
         $result = $db->query('SELECT *'
-            . ' FROM status'
+            . ' FROM statuses'
             . ''
             . '');
 
@@ -26,6 +26,15 @@ class status
 
     public static function getStatusById($id)
     {
-
+        $db = Db::getConnection();
+        $sql = 'SELECT *'
+            . ' FROM statuses'
+            . ' WHERE id=:id'
+            . '';
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->execute();
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        return $result->fetch();
     }
 }

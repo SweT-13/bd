@@ -2,9 +2,10 @@
 
     <div class="container">
 
-        <? if ($is_admin) { ?>
-            <form action="/admin/bike/update/<?= $bike['id'] ?>" method="post">
+        <? if ($is_admin) {?>
+            <form action="/admin/bike/update/<?= $bike['id'] ?>" method="post" enctype="multipart/form-data">
                 <h1>Bike:</h1>
+                <p><img src="<?= $bike['image'] ?>" style="width: 10vw; height=10vh" alt="image"></p>
                 <p><b>id:</b> <?= $bike['id'] ?></p>
                 <p><b>model:</b> <input type="text" name="model" value="<?= $bike['model'] ?>"></p>
                 <p><b>categor:</b>
@@ -30,7 +31,9 @@
                         <? } ?>
                     </select>
                 </p>
+                <input type="file" name="image" accept="image/jpeg, image/png" value="<? $bike['image'] ?>">
                 <button name="update">Обновить</button>
+                <button name="deleteImg">Сбросить картинку</button>
                 <? if (isset($_SESSION['messageUpd'])) { ?>
                     <div class="message text-center">
                         <? if (isset($_SESSION['messageUpd']['message']))
@@ -49,6 +52,7 @@
             </form>
         <? } else { ?>
             <h1>Bike:</h1>
+            <p><img src="<?= $bike['image'] ?>" style="width: 10vw; height=10vh" alt="image"></p>
             <p><b>id:</b> <?= $bike['id'] ?></p>
             <p><b>model:</b> <?= $bike['model'] ?></p>
             <p><b>categor:</b> <?= $bike['category'] ?></p>

@@ -34,7 +34,7 @@
 </div>
 <div class="container header">
     <div class="nav row text-center">
-        <div class="col-sm-4 "><a href="/index">Logo</a></div>
+        <div class="col-sm-4 "><a href="/index"><img src="https://storage.yandexcloud.net/bike/arend_bike.png" style="width: 40px; height: 40px" alt="Logo"></a></div>
         <div class="col-sm-4 ">Best Bike</div>
 
         <div class="col-sm-2 text-right <? if (!isset($_SESSION['user'])) { ?>hidden<? } ?>"><?= $_SESSION['login'] ?></div>

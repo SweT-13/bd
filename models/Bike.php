@@ -44,12 +44,12 @@ class Bike
         return $result->fetch();
     }
 
-    public static function UpdateBikeById($id, $category, $model, $local, $status)
+    public static function UpdateBikeById($id, $category, $model, $local, $status, $image = 0)
     {
         $db = Db::getConnection();
 
         $sql = 'UPDATE bikes'
-            . ' SET category_id = :category, model=:model, local_id=:local, status_id=:status'
+        . ' SET category_id = :category, model=:model, local_id=:local, status_id=:status ' . ($image ? ', image=:image_url' : '')
             . ' WHERE id=:id'
             . ' ';
         $result = $db->prepare($sql);
@@ -58,23 +58,26 @@ class Bike
         $result->bindParam(':local', $local, PDO::PARAM_INT);
         $result->bindParam(':status', $status, PDO::PARAM_INT);
         $result->bindParam(':id', $id, PDO::PARAM_INT);
+        if ($image)
+            $result->bindParam(':image_url', $image, PDO::PARAM_STR);
         return $result->execute();
     }
 
-    public static function Create($category, $model, $local, $status)
+
+    public static function Create($category, $model, $local, $status, $image)
     {
         $db = Db::getConnection();
         $sql = 'INSERT INTO bikes'
-            . ' (id,local_id,model,category_id,status_id)'
-            . ' VALUES (NULL, :local, :model, :category, :status)'
+            . ' (id,local_id,model,category_id,status_id, image)'
+            . ' VALUES (NULL, :local, :model, :category, :status, :image_url)'
             . ' ';
         $result = $db->prepare($sql);
         $result->bindParam(':local', $local, PDO::PARAM_INT);
         $result->bindParam(':model', $model, PDO::PARAM_STR);
         $result->bindParam(':category', $category, PDO::PARAM_INT);
         $result->bindParam(':status', $status, PDO::PARAM_INT);
+        $result->bindParam(':image_url', $image, PDO::PARAM_STR);
         return $result->execute();
-
 
     }
 }

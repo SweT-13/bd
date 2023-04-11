@@ -2,3 +2,4 @@
 .htaccess
 .env
 .idea
+/vendor

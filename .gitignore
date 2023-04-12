@@ -1,0 +1,6 @@
+/config
+.htaccess
+.env
+.idea
+/vendor
+composer.lock

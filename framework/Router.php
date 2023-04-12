@@ -15,10 +15,10 @@ class Router
 
     public function getContent(){
         $exec_route = null;
-        echo "путь: ".$this->request->getPath()."<br>";
+        //echo "путь: ".$this->request->getPath()."<br>";
         foreach (self::$routes as $route){
-            echo "Путь: ".$route->getPath()."<br>";
-            echo "MASK: ".$route->getMask()."<br>";
+            //echo "Путь: ".$route->getPath()."<br>";
+            //echo "MASK: ".$route->getMask()."<br>";
             if($route->getType() == $this->request->getType() && preg_match($route->getMask(), $this->request->getPath()))
             {
                 $exec_route = $route;

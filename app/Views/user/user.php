@@ -9,15 +9,10 @@
 </head>
 <body>
 <h1>Сведения о пользователе:</h1>
-<ul>
-    <?php foreach ($data['users'] as $user): ?>
-        <li>
-            <?=$user->first_name?>
-            <?=$user->last_name?>
-            <?=$user->is_admin?>
-        </li>
-    <?php endforeach; ?>
 
-</ul>
+<h3>Имя\Фамилия: <?= $data['user']->firstname ?> <?= $data['user']->lastname ?></h3>
+Баланс: <?= $data['user']->balance ?><br>
+Статус: <?= $data['user']->is_admin ?>
+
 </body>
 </html>

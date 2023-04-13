@@ -23,7 +23,7 @@ class UserController extends Controller
          throw new UnauthorizedException('');
       }
 //        var_dump($users->getById($id));
-        return $this->view('user.php', ['user' =>  UserModel::getById($id)]);
+        return $this->view('user\user.php', ['user' =>  UserModel::getById($id)]);
 
     }
 

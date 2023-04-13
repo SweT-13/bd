@@ -4,27 +4,30 @@ namespace Framework;
 
 abstract class Model
 {
-    public function getById($id){
-        return $this->getWhere(['id' => $id]);
-    }
+  protected static $primaryKey = 'id';
 
-    public abstract function getWhere($conditions);
+  public static function getById($id)
+  {
+    return static::getWhere(static::$primaryKey, '=', $id)[0];
+  }
 
-    public function all(){
-        return $this->getWhere([]);
-    }
+  public static abstract function getWhere($field = null, $operation = null, $value = null);
 
-    public function deleteById($id){
-        $this->getWhere(['id'=>$id]);
-    }
+  public static abstract function all();
 
-    public abstract function deleteWhere($conditions);
 
-    public function updateById($id){
-        return $this->updateWhere([$this->getIdField()=>$id]);
-    }
+  public static function deleteById($id)
+  {
+  }
 
-    public abstract function updateWhere($conditions);
+  public abstract function deleteWhere($conditions);
 
-    public abstract function create($fields);
+  public function updateById($id)
+  {
+    return $this->updateWhere([static::$primaryKey => $id]);
+  }
+
+  public static abstract function updateWhere($conditions);
+
+  public static abstract function create($fields);
 }

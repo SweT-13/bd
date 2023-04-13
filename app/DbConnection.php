@@ -6,7 +6,7 @@ use PDOException;
 class DbConnection
 {
     private static $connection;
-    public static function getConnection()
+    public static function getConnection(): PDO
     {
         try {
             if (!self::$connection) self::$connection = new PDO("mysql:host=$_ENV[dbhost];dbname=$_ENV[dbname];charset=utf8mb4", $_ENV['dbuser'], $_ENV['dbpassword']);

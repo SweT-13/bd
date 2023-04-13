@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Framework\Model;
@@ -6,21 +7,11 @@ use Framework\MysqlModel;
 
 class BikeModel extends MysqlModel
 {
-    protected $table="bikes";
+    protected static $table = "bikes";
 
     public function deleteWhere($conditions)
     {
         // TODO: Implement deleteWhere() method.
-    }
-
-    public function updateWhere($conditions)
-    {
-        // TODO: Implement updateWhere() method.
-    }
-
-    public function create($fields)
-    {
-        // TODO: Implement create() method.
     }
 
     public function all()
@@ -46,8 +37,5 @@ class BikeModel extends MysqlModel
         }
         return $newsList;
     }
-
-
-
 
 }

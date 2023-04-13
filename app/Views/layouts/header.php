@@ -6,9 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bikes list</title>
-    <link href="/template/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/template/css/header.css" rel="stylesheet">
-    <link rel="stylesheet" href="/template/css/mian.css">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/header.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/mian.css">
 </head>
 <body>
 <div class="bgLogin <? if (!isset($_SESSION['errors'])) { ?>hidden<? } ?>">

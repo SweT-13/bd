@@ -5,6 +5,7 @@
  * Date: 05.03.2020
  * Time: 12:33
  */
+
 namespace Framework;
 class Route
 {
@@ -16,7 +17,7 @@ class Route
     private $type;
     private bool $requireAuth;
 
-  public function __construct($path, $action, $type, bool $auth = false)
+    public function __construct($path, $action, $type, bool $auth = false)
     {
         $this->path = $path;
         $this->action = $action;
@@ -30,13 +31,14 @@ class Route
 //       var_dump($params);
 //        echo "<br>";
 //        return $params[0];
-//  }
+//    }
 
-    public function getMask(){
+    public function getMask()
+    {
         $path = $this->path;
-        $path =  preg_replace("/{[a-z]\w*}/","(\w*)",$path);
-        echo "Mask: ".$path."<br>";
-        return '~'.$path.'~';
+        $path = preg_replace("/{[a-z]\w*}/", "(\w*)", $path);
+//        echo "Mask: " . $path . "<br>";
+        return '~' . $path . '~';
     }
 
 
@@ -50,15 +52,15 @@ class Route
     {
         return $this->action;
     }
-    
+
     public function getControllerClass(): string
     {
-      return "App\Controllers\\".explode('@', $this->action)[0];
+        return "App\Controllers\\" . explode('@', $this->action)[0];
     }
-    
+
     public function getControllerMethodName(): string
     {
-      return explode('@', $this->action)[1];
+        return explode('@', $this->action)[1];
     }
 
     public function getType()
@@ -66,24 +68,21 @@ class Route
         return $this->type;
     }
 
-  /**
-  
-   * @return bool
-   */
-  public function isRequireAuth(): bool
-  {
-    return $this->requireAuth;
-  }
+    /**
+     * @return bool
+     */
+    public function isRequireAuth(): bool
+    {
+        return $this->requireAuth;
+    }
 
-  /**
-   * @param bool $requireAuth
-   */
-  public function setRequireAuth(bool $requireAuth): void
-  {
-    $this->requireAuth = $requireAuth;
-  }
-    
-    
+    /**
+     * @param bool $requireAuth
+     */
+    public function setRequireAuth(bool $requireAuth): void
+    {
+        $this->requireAuth = $requireAuth;
+    }
 
 
 }

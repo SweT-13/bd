@@ -11,9 +11,12 @@
     <link rel="stylesheet" href="/assets/css/mian.css">
 </head>
 <body>
-<div class="bgLogin <? if (!isset($_SESSION['errors'])) { ?>hidden<? } ?>">
+<!--<pre>-->
+<!--    --><?//= var_dump($_SESSION) ?>
+<!--</pre>-->
+<div class="bgLogin <? if (isset($_SESSION['login'])) { ?>hidden<? } ?>">
     <div class="log-in ">
-        <form action="/site/user" method="post">
+        <form action="/login" method="post">
             <svg id="cansel" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                  class="bi bi-arrow-up-right-square-fill " viewBox="0 0 16 16">
                 <path d="M14 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12zM5.904 10.803 10 6.707v2.768a.5.5 0 0 0 1 0V5.5a.5.5 0 0 0-.5-.5H6.525a.5.5 0 1 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 .707.707z"/>
@@ -22,25 +25,25 @@
             <p><label>Password <input type="password" name="password"></label></p>
             <input type="submit" name="submitIn">
         </form>
-        <? if (isset($_SESSION['errors'])) { ?>
+        <? if (isset($_SESSION['msg'])) { ?>
             <div class="error text-center">
-                <? foreach ($_SESSION['errors'] as $e) { ?>
+                <? foreach ($_SESSION['msg'] as $e) { ?>
                     <p class="alert-danger"><?= $e ?></p>
                 <? } ?>
             </div>
-            <? $_SESSION['errors'] = null;
-        } ?>
+        <? } ?>
     </div>
 </div>
 <div class="container header">
     <div class="nav row text-center">
-        <div class="col-sm-4 "><a href="/index"><img src="https://storage.yandexcloud.net/bike/arend_bike.png" style="width: 40px; height: 40px" alt="Logo"></a></div>
+        <div class="col-sm-4 "><a href="/index"><img src="https://storage.yandexcloud.net/bike/arend_bike.png"
+                                                     style="width: 40px; height: 40px" alt="Logo"></a></div>
         <div class="col-sm-4 ">Best Bike</div>
 
-        <div class="col-sm-2 text-right <? if (!isset($_SESSION['user'])) { ?>hidden<? } ?>"><?= $_SESSION['login'] ?></div>
-        <div id="out" class="col-sm-2  text-left <? if (!isset($_SESSION['user'])) { ?>hidden<? } ?>">Выйти</div>
+        <div class="col-sm-2 text-right <? if (!isset($_SESSION['login'])) { ?>hidden<? } ?>"><?= $_SESSION['login'] ?></div>
+        <div id="out" class="col-sm-2  text-left <? if (!isset($_SESSION['login'])) { ?>hidden<? } ?>">Выйти</div>
 
-        <div id="in" class="col-sm-4 <? if (isset($_SESSION['user'])) { ?>hidden<? } ?>">Войти</div>
+        <div id="in" class="col-sm-4 <? if (isset($_SESSION['login'])) { ?>hidden<? } ?>">Войти</div>
     </div>
 </div>
 
@@ -55,7 +58,7 @@
             login.classList.remove('hidden');
         };
         outlog.onclick = function () {
-            document.location.href = '/site/user/logout';
+            document.location.href = '/logout';
         };
         cansel.onclick = function () {
             login.classList.add('hidden');

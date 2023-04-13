@@ -46,10 +46,10 @@ class Router
     {
         $params = [];
         preg_match_all($route->getMask(), $this->request->getPath(), $params);
-        echo("<p>Params: ");
-        var_dump($params);
-        echo("<p>Params for controller: ");
-        var_dump(array_map(fn ($p) => $p[0], array_slice($params, 1)));
+//        echo("<p>Params: ");
+//        var_dump($params);
+//        echo("<p>Params for controller: ");
+//        var_dump(array_map(fn ($p) => $p[0], array_slice($params, 1)));
         return array_map(fn ($p) => $p[0], array_slice($params, 1));
     }
 
@@ -64,9 +64,12 @@ class Router
         if (!$exec_route) {
             throw new RouteNotFoundException();
         };
+       var_dump($exec_route); ;
         $this->checkAuth($exec_route);
         $controller_name = $exec_route->getControllerClass();
         $method_name = $exec_route->getControllerMethodName();
+        echo $controller_name . '<br>';
+        echo $method_name . '<br>';
         $controller = new $controller_name();
         if (!method_exists($controller, $method_name)) {
             throw new MethodNotFoundException($method_name, $controller_name);

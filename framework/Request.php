@@ -1,4 +1,5 @@
 <?php
+
 namespace Framework;
 
 class Request
@@ -7,9 +8,9 @@ class Request
     private $get_params;
     private $post_params;
     private $type;
-    
+
     private $user;
-    
+
     private $session;
 
     public function __construct()
@@ -18,10 +19,9 @@ class Request
         $this->get_params = $_GET;
         unset($this->get_params['path']);
         $this->post_params = $_POST;
-        if($_SERVER['REQUEST_METHOD'] === 'POST') $this->type = Route::METHOD_POST;
-        if($_SERVER['REQUEST_METHOD'] === 'GET') $this->type = Route::METHOD_GET;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') $this->type = Route::METHOD_POST;
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') $this->type = Route::METHOD_GET;
         $this->session = $_SESSION;
-        $_SESSION['msg'] = null;
     }
 
     /**
@@ -56,37 +56,37 @@ class Request
         return $this->type;
     }
 
-  /**
-   * @return mixed
-   */
-  public function getUser()
-  {
-    return $this->user;
-  }
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 
-  /**
-   * @param mixed $user
-   */
-  public function setUser($user): void
-  {
-    $this->user = $user;
-  }
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user): void
+    {
+        $this->user = $user;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getSession()
-  {
-    return $this->session;
-  }
+    /**
+     * @return mixed
+     */
+    public function getSession()
+    {
+        return $this->session;
+    }
 
-  /**
-   * @param mixed $session
-   */
-  public function setSession($session): void
-  {
-    $this->session = $session;
-  }
+    /**
+     * @param mixed $session
+     */
+    public function setSession($session): void
+    {
+        $this->session = $session;
+    }
 
-  
+
 }

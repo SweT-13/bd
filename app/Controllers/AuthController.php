@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 use App\Models\UserModel;
@@ -14,27 +15,27 @@ class AuthController extends Controller
         $password = $request->getPostParams()['password'];
 //        echo ($login.' '.$password);
         if (isset($login) and $login != '') {
-            $user = UserModel::getWhere('email', '=', $login)[0];
-            if ($user){
-                if (MD5($password) == $user->md5password){
-                    $_SESSION['login'] = $user->email;
+            $user = UserModel::getWhere('login', '=', $login)[0];
+            if ($user) {
+                if (/*MD5(*/ $password/*)*/ == $user->password) {
+                    $_SESSION['login'] = $user->login;
                     $_SESSION['firstname'] = $user->firstname;
                     $_SESSION['lastname'] = $user->lastname;
                     $_SESSION['id'] = $user->id;
 
-                    $_SESSION['msg'] = "Вы успешно вошли в систему";
-                }
-                else $_SESSION['msg'] = "Неправильный пароль";
-            }
-            else $_SESSION['msg'] = "Неправильный логин";
+                    $_SESSION['msg'][] = "Вы успешно вошли в систему";
+                } else $_SESSION['msg'][] = "Неправильный пароль";
+            } else $_SESSION['msg'][] = "Неправильный логин";
         }
-        header('Location: /page/hello');
+        header('Location: /index');
         exit();
     }
-    public function logout(Request $request){
-        $_SESSION = null;
-        $_SESSION['msg'] =  "Вы успешно вышли из системы";
-        header('Location: /page/hello');
+
+    public function logout(Request $request)
+    {
+        $_SESSION = NULL;
+        $_SESSION['msg'][] = "Вы успешно вышли из системы";
+        header('Location: /index');
         exit();
     }
 }
